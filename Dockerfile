@@ -15,7 +15,16 @@ RUN dotnet publish "dotnet6.csproj" -c Release -o publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 
+WORKDIR /app
+
 COPY --from=build /app/publish .
+
+RUN groupadd -g 2000 skgroup \
+    && useradd -r -u 2000 -g 2000 sk \
+    && chown -R sk:skgroup /app
+
+USER sk
+
 ENV ASPNETCORE_URLS http://*:5000
 
 EXPOSE 5000
