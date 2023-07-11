@@ -23,7 +23,7 @@ RUN groupadd -g 2000 skgroup \
     && useradd -r -u 2000 -g 2000 sk \
     && chown -R sk:skgroup /app
 
-USER sk
+USER sklhost
 
 ENV ASPNETCORE_URLS http://*:5000
 
