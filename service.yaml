@@ -5,9 +5,9 @@ metadata:
   namespace: sknamespace
 spec:
   selector:
-    app.kubernetes.io/name: myapp
+    app: myapp
   ports:
     - protocol: TCP
       port: 80
       targetPort: 5000
-  type: Loadbalancer    
+  type: LoadBalancer
