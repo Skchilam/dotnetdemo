@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-deployment
+  name: docker
   namespace: sknamespace
   labels:
     app: myapp
@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: dotnetdemo-myapp-1
-        image: dotnetdemo-myapp
+        image: 
         ports:
         - containerPort: 5000
