@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: dotnetdemo-myapp-1
-        image: 
+        image: skchilam/dotnetdemo-myapp
         ports:
         - containerPort: 5000
