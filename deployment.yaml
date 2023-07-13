@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: dotnetdemo-myapp-1
-        image: skchilam/dotnetdemo-myapp
+        image: dockerregister1.azurecr.io/dotnetdemo-myapp
         ports:
         - containerPort: 5000
       imagepullsecrets:
