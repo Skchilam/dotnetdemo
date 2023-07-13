@@ -20,5 +20,5 @@ spec:
         image: dockerregister1.azurecr.io/dotnetdemo-myapp
         ports:
         - containerPort: 5000
-      imagepullsecrets:
+      imagePullSecrets:
       - name: sk  
