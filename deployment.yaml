@@ -20,3 +20,5 @@ spec:
         image: skchilam/dotnetdemo-myapp
         ports:
         - containerPort: 5000
+      imagepullsecrets:
+      - name: new  
