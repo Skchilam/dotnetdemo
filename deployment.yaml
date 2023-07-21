@@ -32,24 +32,24 @@ spec:
             memory: 100Mi
         livenessProbe:        
           exec:
-            - free
+            command: ["free"]
           initialDelaySeconds: 5
           timeoutSeconds: 5
           successThreshold: 1
           failureThreshold: 3
           periodSeconds: 10
         readinessProbe:
-           httpGet:
-             path: /_status/healthz
-             port: 80
-           initialDelaySeconds: 5
-           timeoutSeconds: 2
-           successThreshold: 1
-           failureThreshold: 3
-           periodSeconds: 10
+          httpGet:
+            path: /_status/healthz
+            port: 80
+          initialDelaySeconds: 5
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
         ports:
         - containerPort: 5000
       imagePullSecrets:
       - name: sk
-    imagePullPolicy: Always
+      imagePullPolicy: Always
   restartPolicy: Always
