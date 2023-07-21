@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: my-role-binding
+  namespace: sknamespace  # Replace with the appropriate namespace where you want to create the RoleBinding
+subjects:
+  - kind: ServiceAccount
+    name: my-service-account  # Replace with the name of the ServiceAccount you created in step 1
+    namespace: sknamespace  # Replace with the appropriate namespace where the ServiceAccount exists
+roleRef:
+  kind: Role
+  name: my-role  # Replace with the name of the Role you created in step 2
+  apiGroup: rbac.authorization.k8s.io
