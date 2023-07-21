@@ -6,14 +6,14 @@ metadata:
   labels:
     app: myapp
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: myapp
   strategy:
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
     type: RollingUpdate
   template:
     metadata:
@@ -26,28 +26,27 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 300Mi
+            memory: 100Mi
           limits:
-            cpu: 200m
-            memory: 300Mi
-        livenessProbe:
+            cpu: 100Mi
+            memory: 100Mi
+        livenessProbe:        
           exec:
-            command:
-            - YOUR_LIVENESS_COMMAND_OR_SCRIPT_HERE
+            - free
           initialDelaySeconds: 5
           timeoutSeconds: 5
           successThreshold: 1
           failureThreshold: 3
           periodSeconds: 10
         readinessProbe:
-          exec:
-            command:
-            - YOUR_READINESS_COMMAND_OR_SCRIPT_HERE
-          initialDelaySeconds: 5
-          timeoutSeconds: 2
-          successThreshold: 1
-          failureThreshold: 3
-          periodSeconds: 10
+           httpGet:
+             path: /_status/healthz
+             port: 80
+           initialDelaySeconds: 5
+           timeoutSeconds: 2
+           successThreshold: 1
+           failureThreshold: 3
+           periodSeconds: 10
         ports:
         - containerPort: 5000
       imagePullSecrets:
