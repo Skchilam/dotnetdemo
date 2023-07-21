@@ -47,8 +47,14 @@ spec:
           successThreshold: 1
           failureThreshold: 3
           periodSeconds: 10
+        env:
+        -  name: config
+           valueFrom:
+             configMapKeyRef:
+               name: myapp
+               key: myapp
         ports:
-        - containerPort: 5000
+        - containerPort: 80
       imagePullSecrets:
       - name: sk
       imagePullPolicy: Always

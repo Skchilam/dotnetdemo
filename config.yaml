@@ -4,4 +4,4 @@ metadata:
   name: CM
   namespace: sknamespace
 data:
-  key: DB_HOST
+  key: default
