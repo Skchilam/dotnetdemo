@@ -25,11 +25,11 @@ spec:
         image: dockerregister1.azurecr.io/dotnetdemo-myapp
         resources:
           requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: "100m"
+            memory: "100Mi"
           limits:
-            cpu: 100Mi
-            memory: 100Mi
+            cpu: "100Mi"
+            memory: "100Mi"
         livenessProbe:        
           tcpSocket:
             port: 5000
@@ -48,14 +48,12 @@ spec:
           failureThreshold: 3
           periodSeconds: 10
         env:
-        -  name: DB_HOST
-           valueFrom:
-             configMapKeyRef:
-               name: myapp
-               key: DB_HOST
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: myapp
+              key: DB_HOST
         ports:
         - containerPort: 5000
       imagePullSecrets:
       - name: sk
-      imagePullPolicy: Always
-  restartPolicy: Always

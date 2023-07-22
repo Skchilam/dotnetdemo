@@ -1,0 +1,12 @@
+# network-policy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-myapp-access
+  namespace: sknamespace
+spec:
+  podSelector:
+    matchLabels:
+      app: myapp
+  ingress:
+  - {}
