@@ -20,7 +20,7 @@ spec:
       labels:
         app: myapp
     spec:
-     affinity:  # Add the 'affinity' section to specify node affinity
+      affinity:  # Add the 'affinity' section to specify node affinity
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
