@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dotnet-app
+  template:
+    metadata:
+      labels:
+        app: dotnet-app
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - dotnet-app
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: dotnetdemo-myapp 
+          image: skchilam/dotnetdemo-myapp
+          ports:
+            - containerPort: 80
