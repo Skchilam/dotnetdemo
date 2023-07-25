@@ -28,7 +28,7 @@ spec:
                   - key: agentpool
                     operator: In
                     values:
-                      - agentpool
+                      - node1
       containers:
       - name: dotnetdemo-myapp-1
         image: dockerregister1.azurecr.io/dotnetdemo-myapp
