@@ -55,5 +55,9 @@ spec:
               key: DB_HOST
         ports:
         - containerPort: 5000
+      tolerations:
+      - key: "agentpool"
+        operator: "Exists"
+        effect: "NoSchedule"
       imagePullSecrets:
       - name: sk
