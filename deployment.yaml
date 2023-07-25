@@ -20,15 +20,6 @@ spec:
       labels:
         app: myapp
     spec:
-      affinity:  # Add the 'affinity' section to specify node affinity
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: agentpool
-                    operator: In
-                    values:
-                      - node1
       containers:
       - name: dotnetdemo-myapp-1
         image: dockerregister1.azurecr.io/dotnetdemo-myapp
