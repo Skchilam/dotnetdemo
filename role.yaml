@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: my-role
-  namespace: sknamespace  # Replace with the appropriate namespace where you want to create the Role
+  namespace: sk  # Replace with the appropriate namespace where you want to create the Role
 rules:
   - apiGroups: ["apiVersion: v1"]  # The core API group for resources in the Kubernetes API
     resources: ["deployment"]  # Replace "pods" with the desired resource type (e.g., "deployments", "services", etc.)
