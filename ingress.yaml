@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-ingress
-  namespace: sknamespace   # Replace 'your-namespace' with the desired namespace name
+  namespace: sk   # Replace 'your-namespace' with the desired namespace name
   annotations:
     # Add annotations here if needed
     nginx.ingress.kubernetes.io/rewrite-target: /$1
