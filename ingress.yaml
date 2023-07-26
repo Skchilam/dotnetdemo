@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - mydomain.com
+    - bermtec.com
     secretName: my-tls-secret
   rules:
-  - host: mydomain.com
+  - host: bermtec.com
     http:
       paths:
       - path: /app
