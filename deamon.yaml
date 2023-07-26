@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: fluentd-daemon
-  namespace: sknamespace  # Replace 'your_namespace' with the desired namespace
+  namespace: sk  # Replace 'your_namespace' with the desired namespace
 spec:
   selector:
     matchLabels:
