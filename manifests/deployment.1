@@ -29,20 +29,6 @@ spec:
                     operator: In
                     values:
                       - node1
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-          labelSelector:
-                matchExpressions:
-                  - key: app
-                    operator: In
-                    values:
-                      - myapp
-          topologyKey: topology.kubernetes.io/zone
-  containers:
-  - name: with-pod-affinity
-    image: registry.k8s.io/pause:2.0             
       containers:
       - name: dotnetdemo-myapp-1
         image: dockerregister1.azurecr.io/dotnetdemo-myapp
@@ -79,9 +65,9 @@ spec:
         ports:
         - containerPort: 5000
       - containerPort: 5000
-    tolerations:
+      tolerations:
       - key: "agentpool"
         operator: "Exists"
         effect: "NoSchedule"
-    imagePullSecrets:
+      imagePullSecrets:
       - name: sk
