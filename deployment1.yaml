@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: docker
-  namespace: sk
+  namespace: sknamespace
   labels:
     app: myapp
 spec:
@@ -20,17 +20,8 @@ spec:
       labels:
         app: myapp
     spec:
-    affinity:  # Add the 'affinity' section to specify node affinity
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: agentpool
-                    operator: In
-                    values:
-                      - agentpool
-      
-        podAntiAffinity:  # 'podAntiAffinity' is correctly placed within the 'affinity' section
+      affinity:
+        podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
             - weight: 100
               podAffinityTerm:
@@ -41,7 +32,15 @@ spec:
                       values:
                         - myapp
                 topologyKey: topology.kubernetes.io/zone
-        containers:
+        nodeAffinity:  # Add the 'nodeAffinity' section here
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: nodeLabelKey
+                    operator: In
+                    values:
+                      - nodeLabelValue
+      containers:
         - name: dotnetdemo-myapp-1
           image: dockerregister1.azurecr.io/dotnetdemo-myapp
           resources:
@@ -76,5 +75,5 @@ spec:
                   key: DB_HOST
           ports:
             - containerPort: 5000
-        imagePullSecrets:
+      imagePullSecrets:
         - name: sk
