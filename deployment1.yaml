@@ -29,17 +29,17 @@ spec:
                     operator: In
                     values:
                       - agentpool
-        podAntiAffinity:  # Corrected placement of 'podAntiAffinity' section
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - myapp
-                topologyKey: topology.kubernetes.io/zone
+      podAntiAffinity:  # 'podAntiAffinity' should be outside the 'affinity' section
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - myapp
+              topologyKey: topology.kubernetes.io/zone
       containers:
         - name: with-pod-affinity
           image: registry.k8s.io/pause:2.0
