@@ -20,7 +20,7 @@ spec:
       labels:
         app: myapp
     spec:
-      affinity:
+      affinity:  # Add the 'affinity' section to specify node affinity
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
@@ -29,55 +29,55 @@ spec:
                     operator: In
                     values:
                       - agentpool
-      podAntiAffinity:  # 'podAntiAffinity' should be outside the 'affinity' section
-        preferredDuringSchedulingIgnoredDuringExecution:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
           - weight: 100
             podAffinityTerm:
-              labelSelector:
+          labelSelector:
                 matchExpressions:
                   - key: app
                     operator: In
                     values:
                       - myapp
-              topologyKey: topology.kubernetes.io/zone
+          topologyKey: topology.kubernetes.io/zone
+  containers:
+  - name: with-pod-affinity
+    image: registry.k8s.io/pause:2.0             
       containers:
-        - name: with-pod-affinity
-          image: registry.k8s.io/pause:2.0
-          containers:
-            - name: dotnetdemo-myapp-1
-              image: dockerregister1.azurecr.io/dotnetdemo-myapp
-              resources:
-                requests:
-                  cpu: "100m"
-                  memory: "100Mi"
-                limits:
-                  cpu: "100Mi"
-                  memory: "100Mi"
-              livenessProbe:
-                tcpSocket:
-                  port: 5000
-                initialDelaySeconds: 5
-                timeoutSeconds: 5
-                successThreshold: 1
-                failureThreshold: 3
-                periodSeconds: 10
-              readinessProbe:
-                httpGet:
-                  path: /_status/healthz
-                  port: 5000
-                initialDelaySeconds: 5
-                timeoutSeconds: 2
-                successThreshold: 1
-                failureThreshold: 3
-                periodSeconds: 10
-              env:
-                - name: DB_HOST
-                  valueFrom:
-                    configMapKeyRef:
-                      name: myapp
-                      key: DB_HOST
-              ports:
-                - containerPort: 5000
-                  containerPort: 5000
-          imagePullSecrets:
-            - name: sk
+      - name: dotnetdemo-myapp-1
+        image: dockerregister1.azurecr.io/dotnetdemo-myapp
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+          limits:
+            cpu: "100Mi"
+            memory: "100Mi"
+        livenessProbe:        
+          tcpSocket:
+            port: 5000
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /_status/healthz
+            port: 5000
+          initialDelaySeconds: 5
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: myapp
+              key: DB_HOST
+        ports:
+        - containerPort: 5000
+      - containerPort: 5000
+    imagePullSecrets:
+      - name: sk
