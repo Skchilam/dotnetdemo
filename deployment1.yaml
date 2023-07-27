@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: docker
-  namespace: sknamespace
+  namespace: sk
   labels:
     app: myapp
 spec:
@@ -36,10 +36,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                  - key: nodeLabelKey
+                  - key: agentpool
                     operator: In
                     values:
-                      - nodeLabelValue
+                      - agentpool
       containers:
         - name: dotnetdemo-myapp-1
           image: dockerregister1.azurecr.io/dotnetdemo-myapp
