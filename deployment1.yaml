@@ -28,7 +28,7 @@ spec:
                   - key: agentpool
                     operator: In
                     values:
-                      - node1
+                      - agentpool
       
         podAntiAffinity:  # 'podAntiAffinity' is correctly placed within the 'affinity' section
           preferredDuringSchedulingIgnoredDuringExecution:
