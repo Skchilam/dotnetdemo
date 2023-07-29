@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: docker
-  namespace: sk
   labels:
     app: myapp
 spec:
@@ -41,7 +40,7 @@ spec:
                     values:
                       - agentpool
       containers:
-        - name: dotnetdemo-myapp-1
+        - name:  
           image: dockerregister1.azurecr.io/dotnetdemo-myapp
           resources:
             requests:
