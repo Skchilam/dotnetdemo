@@ -19,7 +19,7 @@ variables:
   imagePullSecret: 'dockerregister11334a4d0-auth'
 
   # Agent pool name
-  name: 'sk-agent'
+  pool name: 'sk-agent'
 
 
 stages:
