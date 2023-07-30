@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: sdotnetdemo 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sdotnetdemo
+  template:
+    metadata:
+      labels:
+        app: sdotnetdemo 
+    spec:
+      containers:
+        - name: sdotnetdemo 
+          image: dockerregister1.azurecr.io/sdotnetdemo
+          ports:
+          - containerPort: 5000
