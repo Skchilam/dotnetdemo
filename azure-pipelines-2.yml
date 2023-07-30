@@ -19,7 +19,7 @@ variables:
   imagePullSecret: 'dockerregister11969fa7e-auth'
 
   # Agent pool name
-  name: 'sk'
+  name: 'sk-agent'
 
   # Name of the new namespace being created to deploy the PR changes.
   k8sNamespaceForPR: 'review-app-$(System.PullRequest.PullRequestId)'
