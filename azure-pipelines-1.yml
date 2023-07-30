@@ -19,7 +19,7 @@ variables:
   imagePullSecret: 'dockerregister156261733-auth'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  name: 'sk-agent'
 
   # Name of the new namespace being created to deploy the PR changes.
   k8sNamespaceForPR: 'review-app-$(System.PullRequest.PullRequestId)'
