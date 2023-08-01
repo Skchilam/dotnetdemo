@@ -12,7 +12,7 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'serviceconnectionfordocker'
+  dockerRegistryServiceConnection: 'serviceconnectionforAKS'
   imageRepository: 'skchilamdotnetdemo'
   containerRegistry: 'dockerregister1.azurecr.io'
   dockerfilePath: '**/Dockerfile'
